@@ -3,6 +3,8 @@ This is the official repository for the ICLR 2025 conference paper: ["Learning G
 
 <img src="./assets/model.png" width="100%" height="100%">
 
+<img src="./assets/viz.png" width="100%" height="100%">
+
 ## Installation (Docker)
 A CUDA runtime image and all dependencies are provided via `Dockerfile`.
 
