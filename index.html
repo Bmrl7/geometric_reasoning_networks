@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Smail Ait Bouhsain, Rachid Alami, Thierry Simeon">
+  <meta name="description" content="Geometric Reasoning Networks (GRN) leverage graph neural networks for action and grasp feasibility prediction in Task and Motion Planning (TAMP), reducing reliance on geometric planners and introducing interpretability mechanisms like inverse kinematics feasibility prediction and grasp obstruction estimation for efficient and explainable planning in complex 3D environments.">
+  <meta name="keywords" content="task and motion planning, TAMP, geometric reasoning networks, action feasibility prediction, deep learning, robotics, scene representation, multi-robot systems, interpretability, graph neural networks, inverse kinematics, grasp obstruction estimation, manipulation planning, AI for robotics, artificial intelligence, robot learning, robotic planning">
+  <meta name="author" content="Smail Ait Bouhsain, Rachid Alami, Thierry Simeon">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="LAAS-CNRS">
+  <meta property="og:title" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Smail Ait Bouhsain, Rachid Alami, Thierry Simeon">
+  <meta property="og:description" content="Geometric Reasoning Networks (GRN) leverage graph neural networks for action and grasp feasibility prediction in Task and Motion Planning (TAMP), reducing reliance on geometric planners and introducing interpretability mechanisms like inverse kinematics feasibility prediction and grasp obstruction estimation for efficient and explainable planning in complex 3D environments.">
+  <meta property="og:url" content="https://smail8.github.io/geometric_reasoning_networks/">
+  <meta property="og:image" content="https://github.com/Smail8/geometric_reasoning_networks/tree/master/static/images/poster.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Smail Ait Bouhsain, Rachid Alami, Thierry Simeon - Research Preview">
+  <meta property="article:published_time" content="2025-04-24T00:00:00.000Z">
+  <meta property="article:author" content="Smail Ait Bouhsain">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="task and motion planning">
+  <meta property="article:tag" content="geometric reasoning networks">
+  <meta property="article:tag" content="robotics">
+  <meta property="article:tag" content="deep learning">
+  <meta property="article:tag" content="multi-robot systems">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@LaasCNRS">
+  <meta name="twitter:creator" content="@Sm1Le8B">
+  <meta name="twitter:title" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Smail Ait Bouhsain, Rachid Alami, Thierry Simeon">
+  <meta name="twitter:description" content="Geometric Reasoning Networks (GRN) leverage graph neural networks for action and grasp feasibility prediction in Task and Motion Planning (TAMP), reducing reliance on geometric planners and introducing interpretability mechanisms like inverse kinematics feasibility prediction and grasp obstruction estimation for efficient and explainable planning in complex 3D environments.">
+  <meta name="twitter:image" content="https://github.com/Smail8/geometric_reasoning_networks/tree/master/static/images/poster.png">
+  <meta name="twitter:image:alt" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Smail Ait Bouhsain, Rachid Alami, Thierry Simeon - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Learning Geometric Reasoning Networks for Robot Task and Motion Planning">
+  <meta name="citation_author" content="Ait Bouhsain, Smail">
+  <meta name="citation_author" content="Alami, Rachid">
+  <meta name="citation_author" content="Siméon, Thierry">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="The Thirteenth International Conference on Learning Representations (ICLR 2025)">
+  <meta name="citation_pdf_url" content="https://github.com/Smail8/geometric_reasoning_networks/tree/master/static/pdfs/paper.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>Learning Geometric Reasoning Networks for Robot Task and Motion Planning - Ait Bouhsain, Smail, Alami, Rachid, Siméon, Thierry | Academic Research</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/panda_icon.png">
+  <link rel="apple-touch-icon" href="static/images/panda_icon.png">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Learning Geometric Reasoning Networks for Robot Task and Motion Planning",
+    "description": "Geometric Reasoning Networks (GRN) leverage graph neural networks for action and grasp feasibility prediction in Task and Motion Planning (TAMP), reducing reliance on geometric planners and introducing interpretability mechanisms like inverse kinematics feasibility prediction and grasp obstruction estimation for efficient and explainable planning in complex 3D environments.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Ait Bouhsain, Smail",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "LAAS-CNRS"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Alami, Rachid",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "LAAS-CNRS"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Siméon, Thierry",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "LAAS-CNRS"
+        }
+      }
+    ],
+    "datePublished": "2025-04-24",
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Thirteenth International Conference on Learning Representations (ICLR 2025)"
+    },
+    "url": "https://smail8.github.io/geometric_reasoning_networks/",
+    "image": "https://github.com/Smail8/geometric_reasoning_networks/tree/master/static/images/poster.png",
+    "keywords": [
+      "task and motion planning", "TAMP", "geometric reasoning networks", "action feasibility prediction", "deep learning", "robotics", "scene representation", "multi-robot systems", "interpretability", "graph neural networks", "inverse kinematics", "grasp obstruction estimation", "manipulation planning", "AI for robotics", "artificial intelligence", "robot learning", "robotic planning"
+    ],
+    "abstract": "Task and Motion Planning (TAMP) is a computationally challenging robotics problem due to the tight coupling of discrete symbolic planning and continuous geometric planning of robot motions. In particular, planning manipulation tasks in complex 3D environments leads to a large number of costly geometric planner queries to verify the feasibility of considered actions and plan their motions. To address this issue, we propose Geometric Reasoning Networks (GRN), a graph neural network (GNN)-based model for action and grasp feasibility prediction, designed to significantly reduce the dependency on the geometric planner. Moreover, we introduce two key interpretability mechanisms: inverse kinematics (IK) feasibility prediction and grasp obstruction (GO) estimation. These modules not only improve feasibility predictions accuracy, but also explain why certain actions or grasps are infeasible, thus allowing a more efficient search for a feasible solution. Through extensive experimental results, we show that our model outperforms state-of-the-art methods, while maintaining generalizability to more complex environments, diverse object shapes, multi-robot settings, and real-world robots.",
+    "citation": "@inproceedings{ait2025learning,
+      title={Learning Geometric Reasoning Networks for Robot Task and Motion Planning},
+      author={Ait Bouhsain, Smail and Alami, Rachid and Simeon, Thierry},
+      booktitle={The Thirteenth International Conference on Learning Representations},
+      year={2025}
+    }",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://smail8.github.io/geometric_reasoning_networks/"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "AI for Robotics"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Geometric Reasoning Networks"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Machine Learning"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Task and Motion Planning"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Deep Learning"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Multi-Robot Systems"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "LAAS-CNRS",
+    "url": "https://laas.fr",
+    "logo": "https://github.com/Smail8/geometric_reasoning_networks/tree/master/static/images/laas_logo.png",
+    "sameAs": [
+      "https://twitter.com/LaasCNRS",
+      "https://github.com/Smail8/geometric_reasoning_networks"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Lab</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <a href="https://ieeexplore.ieee.org/abstract/document/10802307" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Extending Task and Motion Planning with Feasibility Prediction: Towards Multi-Robot Manipulation Planning of Realistic Objects</h5>
+            <p>We introduce a multi-robot TAMP algorithm that leverages feasibility prediction to address complex manipulation tasks. Our approach extends previous methods by enabling the handling of mesh-shaped objects and collaborative multi-robot settings, demonstrating significant improvements over baseline methods.</p>
+            <span class="work-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2024)</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10341257" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Simultaneous Action and Grasp Feasibility Prediction for Task and Motion Planning through Multi-Task Learning</h5>
+            <p>We propose AGFP-Net, a multi-task neural network that predicts action feasibility and grasp type feasibility, significantly improving task and motion planning (TAMP) by reducing geometric planning time and solving more complex problems.</p>
+            <span class="work-venue">2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2023)</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10161114" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Learning to Predict Action Feasibility for Task and Motion Planning in 3D Environments</h5>
+            <p>We introduce a novel approach for Task and Motion Planning (TAMP) in 3D environments, combining an efficient 3D scene representation with a deep neural network to predict action feasibility, significantly reducing geometric planning time by up to 90% on complex problems.</p>
+            <span class="work-venue">2023 IEEE International Conference on Robotics and Automation (ICRA 2023)</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Learning Geometric Reasoning Networks for Robot Task and Motion Planning</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><a href="https://smail8.github.io" target="_blank">Smail Ait Bouhsain</a>,</span>
+                <span class="author-block"><a href="https://www.laas.fr/en/homepages/rachid/" target="_blank">Rachid Alami</a>,</span>
+                <span class="author-block"><a href="https://www.laas.fr/fr/annuaire/29" target="_blank">Thierry Siméon</a></span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">LAAS-CNRS<br>The Thirteenth International Conference on Learning Representations (ICLR 2025)</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://openreview.net/forum?id=ajxAJ8GUX4" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="static/images/poster.png" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-photo-video"></i>
+                      </span>
+                      <span>Poster</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://github.com/smail8/geometric_reasoning_networks" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://laas.hal.science/hal-04914376v1/document" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-hal"></i>
+                      </span>
+                      <span>HAL</span>
+                    </a>
+                  </span>
+
+                  
+                  <span class="link-block">
+                    <a href="https://huggingface.co/Smile8/GRN_models" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
+                      <span>Models</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://huggingface.co/datasets/Smile8/GRN_datasets" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
+                      <span>Datasets</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+            <figure class="image">
+              <img src="static/images/viz.png" alt="Teaser Image">
+            </figure>
+            <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+            <h2 class="subtitle has-text-centered">
+              Our method tackles the computational challenges of Task and Motion Planning (TAMP) by introducing Geometric Reasoning Networks (GRN), a graph neural network-based model for action and grasp feasibility prediction. By reducing reliance on geometric planners, GRN accelerates planning in complex 3D environments. Additionally, the model incorporates interpretability mechanisms, such as inverse kinematics (IK) feasibility prediction and grasp obstruction (GO) estimation, to enhance prediction accuracy and provide insights into infeasibility. This approach improves efficiency, generalizability, and explainability, enabling effective planning in diverse object shapes, multi-robot systems, and real-world scenarios.
+            </h2>
+        </div>
+      </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Task and Motion Planning (TAMP) is a computationally challenging robotics problem due to the tight coupling of discrete symbolic planning and continuous geometric planning of robot motions. In particular, planning manipulation tasks in complex 3D environments leads to a large number of costly geometric planner queries to verify the feasibility of considered actions and plan their motions. To address this issue, we propose Geometric Reasoning Networks (GRN), a graph neural network (GNN)-based model for action and grasp feasibility prediction, designed to significantly reduce the dependency on the geometric planner. Moreover, we introduce two key interpretability mechanisms: inverse kinematics (IK) feasibility prediction and grasp obstruction (GO) estimation. These modules not only improve feasibility predictions accuracy, but also explain why certain actions or grasps are infeasible, thus allowing a more efficient search for a feasible solution. Through extensive experimental results, we show that our model outperforms state-of-the-art methods, while maintaining generalizability to more complex environments, diverse object shapes, multi-robot settings, and real-world robots.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- Neural Network Image -->
+    <section class="section hero is-small">
+      <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+        <h2 class="title is-3">Proposed Model</h2>
+        <figure class="image">
+          <img src="static/images/model.png" alt="Diagram of Geometric Reasoning Networks (GRN)">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+          The <strong>Geometric Reasoning Networks (GRN)</strong> architecture. A scene graph is constructed from the input 3D environment. Node features of movable objects are given to IK feasibility module which outputs are used to update self-loop edge features. The concatenated features of nodes linked through a proximity edge are fed to the GO module to get grasp obstruction estimations, which are appended to proximity edge features. Finally, the updated graph is given to the AGF module to predict the action and grasp types feasibility for each movable object in the environment.
+        </p>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <span class="link-block">
+          <a href="https://huggingface.co/Smile8/GRN_models" target="_blank" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
+            <span>Models</span>
+          </a>
+        </span>
+      </div>
+      </div>
+    </section>
+    <!-- End Neural Network Image -->
+
+
+
+    <!-- Datasets -->
+    <section class="section hero is-small">
+      <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+        <h2 class="title is-3">Datasets</h2>
+        <figure class="image">
+          <img src="static/images/data_viz.png" alt="Visualization of the datasets used for training and evaluation">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+            The datasets used for training and evaluation are fully synthetic and generated to simulate diverse 3D environments. Each dataset is characterized by the number of movable objects, structures (e.g., racks, counters, baskets), obstacles, and the robot used for annotation. For instance, the <strong>Panda-3D-4</strong> dataset includes 3D environments with 4 movable objects, up to 4 structures, and up to 4 obstacles, annotated using a Panda robot. Similarly, the <strong>Panda-Tabletop-4</strong> dataset focuses on tabletop environments with 4 movable objects and up to 4 obstacles, designed for comparison with tabletop methods. The <strong>PR2-3D-4</strong> dataset demonstrates applicability to the PR2 robot, using parameters similar to Panda-3D-4. Additional test sets, such as <strong>Panda-3D-10</strong>, <strong>Panda-3D-15</strong>, and <strong>Panda-3D-20</strong>, evaluate generalizability to environments with higher object counts and increased complexity.
+        </p>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <span class="link-block">
+          <a href="https://huggingface.co/datasets/Smile8/GRN_datasets" target="_blank" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
+            <span>Datasets</span>
+          </a>
+        </span>
+      </div>
+      </div>
+    </section>
+    <!-- End Neural Network Image -->
+
+    <!-- Results Section -->
+    <section class="section hero is-small">
+      <div class="hero-body">
+      <div class="container">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div class="columns is-centered is-multiline">
+      <div class="column is-four-fifths has-text-centered">
+        <figure class="image">
+        <img src="static/images/results1.png" alt="Combined Results">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+        Comparison with SOTA methods trained and tested on different datasets. For grasp types feasibility prediction, the mean (+/- standard deviation) of F1 scores of the 5 grasp types are reported.
+        </p>
+      </div>
+      <div class="column is-four-fifths has-text-centered" style="margin-top: 2rem;">
+        <figure class="image">
+        <img src="static/images/results4.png" alt="Combined Results">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+        Evaluation of the generalizability to 3D environments with a higher number of objects compared to SOTA methods, when trained on the Panda-3D-4 dataset.
+        </p>
+      </div>
+      <div class="column is-four-fifths has-text-centered" style="margin-top: 2rem;">
+        <figure class="image">
+        <img src="static/images/results2.png" alt="Real Robot Experiment Results">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+        Ablation Study on the Panda-3D-4 dataset. For each task related to grasp types, we report the mean ($\pm$ standard deviation) across all grasp types.
+        </p>
+      </div>
+      <div class="column is-one-third has-text-centered" style="margin-top: 2rem;">
+        <figure class="image">
+        <img src="static/images/results3.png" alt="Real Robot Experiment Results">
+        </figure>
+        <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+        <p class="subtitle">
+        Comparison of the number of parameters and inference time on a 3D environment with 4 movable objects and 15 fixed objects (4 queries).
+        </p>
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+    <!-- End Results Section -->
+
+    <!-- Visualizations Section -->
+    <section class="section hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Visualizations</h2>
+          <div class="columns is-centered">
+            <!-- First GIF -->
+            <div class="column is-four-fifths has-text-centered">
+              <figure class="image">
+                <img src="static/images/access_hard.png" alt="Visualization of the solution to the Access Problem">
+              </figure>
+              <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+              <p class="subtitle">
+                Visualization of <strong>GRN</strong> predictions on the initial state of a larger version of the <strong>Access</strong> problem. The goal is to have the robot grasp the pink object, which is initially blocked by many objects.
+              </p>
+            </div>
+          </div>
+          <div class="columns is-centered" style="margin-top: 2rem;">
+            <!-- Second GIF -->
+            <div class="column is-four-fifths has-text-centered">
+              <figure class="image">
+                <img src="static/images/handover.png" alt="Visualization of the solution to the Handover Problem">
+              </figure>
+              <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+              <p class="subtitle">
+                Visualization of <strong>GRN</strong> predictions on the initial state of the <strong>Handover</strong> problem. The goal is to perform a handover through a wall, with only three openings available for passing the object.
+            </div>
+          </div>
+          <div class="columns is-centered" style="margin-top: 2rem;">
+            <div class="columns is-centered" style="margin-top: 2rem;">
+              <!-- Third and Fourth GIFs -->
+              <div class="column is-half has-text-centered">
+                <figure class="image">
+                  <img src="static/images/qual1.png" alt="Visualization of the solution to the Clear Problem">
+                </figure>
+              </div>
+              <div class="column is-half has-text-centered">
+                <figure class="image">
+                  <img src="static/images/qual2.png" alt="Visualization of the solution to the Long-swap Problem">
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Visualizations Section -->
+
+    <!-- TAMP Section -->
+    <section class="section hero is-light">
+      <div class="hero-body">
+        <div class="container"></div>
+          <h2 class="title is-3 has-text-centered">Application to TAMP Problems</h2>
+          <div class="columns is-centered" style="margin-top: 2rem;">
+            <!-- Third Image Below -->
+            <div class="column is-half has-text-centered">
+              <figure class="image">
+              <img src="static/images/tamp_results.png" alt="Comparison of TAMP results using GRN and a geometric planner">
+              </figure>
+              <div style="margin-top: 20px;"></div> <!-- Added vertical space -->
+              <p class="subtitle">Performance of <strong>GRN</strong> planner compared to a non-informed planner on the <strong>Access</strong> and <strong>Clutter</strong> problems. Results are average over 10 runs on 10 different instances of each problem.</p>
+            </div>
+          </div>
+            <!-- First and Second GIFs Side by Side -->
+            <div class="columns is-centered is-vcentered">
+              <div class="column is-one-third has-text-centered">
+                <figure class="image">
+                  <img src="static/images/access.gif" alt="Visualization of the solution to the Access Problem">
+                </figure>
+                <p class="subtitle">
+                  <strong>Access Problem</strong>
+                </p>
+              </div>
+              <div class="column is-one-third has-text-centered">
+                <figure class="image" style="display: flex; align-items: center; height: 100%;">
+                  <img src="static/images/clutter.gif" alt="Visualization of the solution to the Clutter Problem" style="margin: auto;">
+                </figure>
+                <p class="subtitle">
+                  <strong>Clutter Problem</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Visualizations Section -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code">
+          <code>
+            @inproceedings{ait2025learning,
+              title={Learning Geometric Reasoning Networks for Robot Task and Motion Planning},
+              author={Ait Bouhsain, Smail and Alami, Rachid and Simeon, Thierry},
+              booktitle={The Thirteenth International Conference on Learning Representations (ICLR 2025)},
+              year={2025}
+            }
+          </code>
+        </pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<!-- Statcounter tracking code -->
+  <!-- Default Statcounter code for AGFPNet-extension (IROS24)
+  https://smail8.github.io/agfpnet-extension -->
+  <script type="text/javascript">
+    var sc_project=13198832; 
+    var sc_invisible=1; 
+    var sc_security="1e1dc672"; 
+  </script>
+  <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+  <noscript>
+    <div class="statcounter">
+      <a title="Web Analytics Made Easy - Statcounter" href="https://statcounter.com/" target="_blank">
+        <img class="statcounter" src="https://c.statcounter.com/13198832/0/1e1dc672/1/" alt="Web Analytics Made Easy - Statcounter" referrerPolicy="no-referrer-when-downgrade">
+      </a>
+    </div>
+  </noscript>
+<!-- End of Statcounter Code -->  
+
+</body>
+</html>
