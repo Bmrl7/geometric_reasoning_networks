@@ -198,7 +198,7 @@ class EdgeGATv2Conv(MessagePassing):
         alpha, edge_attr = self.edge_updater(edge_index, x=(x_l, x_r),
                                   edge_attr=edge_attr)
 
-        # propagate_type: (x: PairTensor, alpha: Tensor)
+        # propagate_type: (x: PairTensor, edge_attr: Tensor, alpha: Tensor)
         out = self.propagate(edge_index, x=(x_l, x_r), edge_attr=edge_attr, alpha=alpha)
 
         out = F.leaky_relu(self.out_lin(out), self.negative_slope)
